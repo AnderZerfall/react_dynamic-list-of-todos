@@ -8,11 +8,11 @@ export function filterTodos(
 ): Todo[] {
   return todos
     .filter(todo => {
-      if (filterBy === FilterByState.active) {
+      if (filterBy === FilterByState.ACTIVE) {
         return !todo.completed;
       }
 
-      if (filterBy === FilterByState.completed) {
+      if (filterBy === FilterByState.COMPLETED) {
         return todo.completed;
       }
 

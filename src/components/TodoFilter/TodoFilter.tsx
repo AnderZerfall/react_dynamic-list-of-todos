@@ -19,9 +19,9 @@ export const TodoFilter: React.FC<Props> = ({
             data-cy="statusSelect"
             onChange={event => setFilterBy(event.target.value)}
           >
-            <option value={FilterByState.all}>All</option>
-            <option value={FilterByState.active}>Active</option>
-            <option value={FilterByState.completed}>Completed</option>
+            <option value={FilterByState.ALL}>All</option>
+            <option value={FilterByState.ACTIVE}>Active</option>
+            <option value={FilterByState.COMPLETED}>Completed</option>
           </select>
         </span>
       </p>

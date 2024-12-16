@@ -27,7 +27,7 @@ export const App: React.FC = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo>(null);
-  const [filterBy, setFilterBy] = useState<FilterByState>(FilterByState.all);
+  const [filterBy, setFilterBy] = useState<FilterByState>(FilterByState.ALL);
   const [query, setQuery] = useState('');
   const [hasErrorMessage, setErrorMessage] = useState('');
 
