@@ -9,7 +9,7 @@ import { getUser } from '../../api';
 
 type Props = {
   selectedTodo: Todo;
-  setSelectedTodo: () => void;
+  setSelectedTodo: (todo: Todo | null) => void;
 };
 
 export const TodoModal: React.FC<Props> = ({
@@ -17,7 +17,7 @@ export const TodoModal: React.FC<Props> = ({
   setSelectedTodo,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState<User>(null);
+  const [userData, setUserData] = useState<User | null>(null);
   const [hasErrorMessage, setErrorMessage] = useState('');
 
   const userId = selectedTodo.userId;
@@ -28,7 +28,7 @@ export const TodoModal: React.FC<Props> = ({
     if (userId) {
       getUser(userId)
         .then(data => setUserData(data))
-        .catch(e => setErrorMessage(e))
+        .catch(e => setErrorMessage(e.message))
         .finally(() => setIsLoading(false));
     }
   }, [userId]);
@@ -42,9 +42,7 @@ export const TodoModal: React.FC<Props> = ({
       ) : (
         <div className="modal-card">
           <header className="modal-card-head">
-            {hasErrorMessage && (
-              <p>An Error occured while downloading user data</p>
-            )}
+            {hasErrorMessage && <h1 className="title">{hasErrorMessage}</h1>}
             <div
               className="modal-card-title has-text-weight-medium"
               data-cy="modal-header"

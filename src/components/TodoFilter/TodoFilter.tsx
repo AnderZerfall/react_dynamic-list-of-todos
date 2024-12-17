@@ -2,8 +2,8 @@ import { FilterByState } from '../../types/FilterByState';
 
 type Props = {
   query: string;
-  setQuery: () => void;
-  setFilterBy: () => void;
+  setQuery: (query: string) => void;
+  setFilterBy: (filterBy: FilterByState) => void;
 };
 
 export const TodoFilter: React.FC<Props> = ({
@@ -17,7 +17,7 @@ export const TodoFilter: React.FC<Props> = ({
         <span className="select">
           <select
             data-cy="statusSelect"
-            onChange={event => setFilterBy(event.target.value)}
+            onChange={event => setFilterBy(event.target.value as FilterByState)}
           >
             <option value={FilterByState.ALL}>All</option>
             <option value={FilterByState.ACTIVE}>Active</option>

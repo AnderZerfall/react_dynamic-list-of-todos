@@ -26,7 +26,7 @@ import { FilterByState } from './types/FilterByState';
 export const App: React.FC = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [isLoading, setLoading] = useState(false);
-  const [selectedTodo, setSelectedTodo] = useState<Todo>(null);
+  const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
   const [filterBy, setFilterBy] = useState<FilterByState>(FilterByState.ALL);
   const [query, setQuery] = useState('');
   const [hasErrorMessage, setErrorMessage] = useState('');
@@ -36,7 +36,7 @@ export const App: React.FC = () => {
 
     getTodos()
       .then(setTodoList)
-      .catch(e => setErrorMessage(e))
+      .catch(e => setErrorMessage('Failed to download the todos' + e.message))
       .finally(() => setLoading(false));
   }, []);
 
@@ -46,9 +46,7 @@ export const App: React.FC = () => {
     <>
       <div className="section">
         <div className="container">
-          {hasErrorMessage && (
-            <h1 className="title">Error has occured while downloading toods</h1>
-          )}
+          {hasErrorMessage && <h1 className="title">{hasErrorMessage}</h1>}
           <div className="box">
             <h1 className="title">Todos:</h1>
 
